@@ -4,6 +4,7 @@
 
 #include <map>
 #include <string>
+#include <vector>
 
 extern "C" {
     int luaopen_ecs(lua_State* L);
@@ -20,12 +21,21 @@ ECS* ecs_ptr(lua_State* L, int index)
 
 // }}}
 
-const std::map<std::string, lua_CFunction> functions = {
-};
-
 // {{{ entity
 
+int ecs_add(lua_State* L) {
+    std::vector<std::string> tags;
+    std::string pool, name;
+    if (lua_gettop(L) != 0) {
+        lua_checktype(L, 1, LUA_TTABLE);
+        // TODO
+    }
+    return ecs_ptr(L, 1)->add(pool, tags, name);
+}
 
+const std::map<std::string, lua_CFunction> functions = {
+    { "add", ecs_add },
+};
 
 // }}}
 

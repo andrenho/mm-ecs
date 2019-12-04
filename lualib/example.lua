@@ -17,9 +17,9 @@ E = ecs.new {
 
 -- setup entities
 
-e1 = E:add_entity({ tags={ 'mytag' }, name='hero' })
+e1 = E:add({ tags={ 'mytag' }, name='hero' })
 --[[
-e2 = E:add_entity()
+e2 = E:add()
 
 e1.position = { x = 4.0, y = 5.0, dir = 40 }
 e1.info = { name = 'Hello', age = 42, things = { 3, 4, 5 } }
