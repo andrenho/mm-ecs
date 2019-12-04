@@ -4,11 +4,20 @@
 #include <string.h>
 
 #include "ecs.h"
+#include "uthash.h"
 
 // {{{ components
 
+typedef struct ECS_ComponentField {
+    char     name[16];
+    ECS_Type type;
+    int      size;
+    size_t   offset;
+} ECS_ComponentField;
+
 typedef struct ECS_Component {
-    const char* name;
+    const char          name;
+    ECS_ComponentField* fields; 
 } ECS_Component;
 
 ECS_Component*
@@ -16,14 +25,14 @@ ecs_component_new(const char* name)
 {
     ECS_Component* c = calloc(1, sizeof(ECS_Component));
     c->name = strdup(name);
-    printf("new component %s\n", name);
+    c->fields = NULL;
     return c;
 }
 
 void
 ecs_component_add_field(ECS_Component* component, const char* name, ECS_Type type, int size)
 {
-    // TODO
+    
 }
 
 ECS_Type
