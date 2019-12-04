@@ -19,12 +19,18 @@ struct ECS_Type {
     bool        optional;
     uint16_t     size;
 
+    ECS_Type(std::string const& named_type) {
+        // TODO
+    }
+
     ECS_Type(ECS_TypeDef type_def) 
         : type_def(type_def), optional(false), size(0) {}
     ECS_Type(ECS_TypeDef type_def, bool optional) 
         : type_def(type_def), optional(optional), size(0) {}
     ECS_Type(ECS_TypeDef type_def, bool optional, uint16_t size) 
         : type_def(type_def), optional(optional), size(size) {}
+    ECS_Type(const char* named_type) 
+        : ECS_Type(std::string(named_type)) {}
 };
 
 typedef std::map<std::string, ECS_Type> Parameters;
@@ -54,7 +60,13 @@ public:
 
 class ECS {
 public:
-    ECS(Components const& components) : components(components) {}
+    ECS(Components const& components) : components(components) {
+        D(std::cout << "ECS initialized.\n");
+    }
+
+    ~ECS() {
+        D(std::cout << "ECS finalized.\n");
+    }
 
     //
     // entities

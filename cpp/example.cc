@@ -9,14 +9,14 @@ int main()
     // setup
     ECS ecs({
         { "position", {
-            { "x", { ECS_TypeDef::Float } },
-            { "y", { ECS_TypeDef::Float } },
-            { "dir", { ECS_TypeDef::Float, true } },
+            { "x", "float" },
+            { "y", "float" },
+            { "dir", "float?" },
         } },
         { "info", {
-            { "name", { ECS_TypeDef::String, false, 20 } },
-            { "age", { ECS_TypeDef::U8 } },
-            { "things", { ECS_TypeDef::Ptr, true } }
+            { "name", "string_20" },
+            { "age", "u8" },
+            { "things", "object?" }
         } },
     });
 
